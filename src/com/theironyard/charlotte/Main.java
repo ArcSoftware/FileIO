@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
-    public static HashMap<String, Game> Games = new HashMap<>();
+    public static HashMap<String, Game> games = new HashMap<>();
     public static Scanner inputScanner = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception{
@@ -16,7 +16,7 @@ public class Main {
             if (rootEntry.equals("1")) {
                 System.out.println("Please enter the name of the game you would like to add to the database:");
                 String newName = Main.inputScanner.nextLine();
-                if (Main.Games.containsKey(newName)) {
+                if (Main.games.containsKey(newName)) {
                     System.out.println("I'm sorry, but that game is already in the database. \n Returning to main menu... \n");
                 } else {
                     System.out.println("Please enter the genre:");
@@ -29,27 +29,40 @@ public class Main {
                     String enteredRating = inputScanner.nextLine();
                     Game newGame = new Game(newName, enteredGenre, enteredConsole, Integer.valueOf(enteredYear), Integer.valueOf(enteredRating));
                     newGame.name = newName;
-                    Main.Games.put(newGame.name, newGame);
+                    Main.games.put(newGame.name, newGame);
                     System.out.println("A new game has been added to the database.");
                 }
             } else if (rootEntry.equals("2")) {
                 System.out.println("What is the name of the game you wish to update?");
                 String updateEntry = inputScanner.nextLine();
-                if (Games.containsKey(updateEntry)) {
+                if (games.containsKey(updateEntry)) {
                     System.out.println("Game found for " + updateEntry + ". \n What would you like to update?");
                     String updateKey = inputScanner.nextLine();
                     if (updateKey.equalsIgnoreCase("name")) {
                         System.out.println("Please enter the new name:");
-                        //Game.name = updateKey;
-                        //Games.replace(updateEntry, Game.name);
+                        String nameChange = inputScanner.nextLine();
+                        Game g = games.get(updateEntry);
+                        g.name = nameChange;
                     } else if (updateKey.equalsIgnoreCase("genre")) {
                         System.out.println("Please enter the new genre:");
+                        String genreChange = inputScanner.nextLine();
+                        Game g = games.get(updateEntry);
+                        g.genre = genreChange;
                     } else if (updateKey.equalsIgnoreCase("console")) {
                         System.out.println("Please enter the new console:");
+                        String consoleChange = inputScanner.nextLine();
+                        Game g = games.get(updateEntry);
+                        g.console = consoleChange;
                     } else if (updateKey.equalsIgnoreCase("year")) {
                         System.out.println("Please enter the new year:");
+                        String yearChange = inputScanner.nextLine();
+                        Game g = games.get(updateEntry);
+                        g.year = Integer.valueOf(yearChange);
                     } else if (updateKey.equalsIgnoreCase("rating")) {
                         System.out.println("Please enter the new rating:");
+                        String ratingChange = inputScanner.nextLine();
+                        Game g = games.get(updateEntry);
+                        g.rating = Integer.valueOf(ratingChange);
                     } else {
                         System.err.println("I'm sorry but the entry entred was not valid.");
                     }
@@ -58,11 +71,11 @@ public class Main {
                 }
             } else if (rootEntry.equals("3")) {
                 System.out.println("Here are the games in the database:");
-                System.out.println(Games.keySet()+ "\n");
+                System.out.println(games.keySet()+ "\n");
             } else if (rootEntry.equals("4")) {
                 System.out.println("Please enter the name of the game.");
                 String infoInquiry = inputScanner.nextLine();
-                System.out.printf("Here is the info from the server: \n Name = %s \n Genre = %s \n Console = %s \n Release Date = %d \n Rating = %d \n ",Games.get(infoInquiry).name, Games.get(infoInquiry).genre, Games.get(infoInquiry).console, Games.get(infoInquiry).year, Games.get(infoInquiry).rating);
+                System.out.printf("Here is the info from the server: \n Name = %s \n Genre = %s \n Console = %s \n Release Date = %d \n Rating = %d \n ",games.get(infoInquiry).name, games.get(infoInquiry).genre, games.get(infoInquiry).console, games.get(infoInquiry).year, games.get(infoInquiry).rating);
             } else {
             System.err.println("Invalid entry, human.");
         }
