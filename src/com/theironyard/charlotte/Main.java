@@ -7,7 +7,7 @@ public class Main {
     public static HashMap<String, Game> Games = new HashMap<>();
     public static Scanner inputScanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         System.out.println("Welcome to the Game Database. \n Here you can store information about video games.");
         while (true) {
             System.out.println("Main Menu: \n 1. Add a game \n 2. Update a game \n 3. List all items in database. \n 4. Info on a game.");
@@ -34,9 +34,31 @@ public class Main {
                 }
             } else if (rootEntry.equals("2")) {
                 System.out.println("What is the name of the game you wish to update?");
+                String updateEntry = inputScanner.nextLine();
+                if (Games.containsKey(updateEntry)) {
+                    System.out.println("Game found for " + updateEntry + ". \n What would you like to update?");
+                    String updateKey = inputScanner.nextLine();
+                    if (updateKey.equalsIgnoreCase("name")) {
+                        System.out.println("Please enter the new name:");
+                        //Game.name = updateKey;
+                        //Games.replace(updateEntry, Game.name);
+                    } else if (updateKey.equalsIgnoreCase("genre")) {
+                        System.out.println("Please enter the new genre:");
+                    } else if (updateKey.equalsIgnoreCase("console")) {
+                        System.out.println("Please enter the new console:");
+                    } else if (updateKey.equalsIgnoreCase("year")) {
+                        System.out.println("Please enter the new year:");
+                    } else if (updateKey.equalsIgnoreCase("rating")) {
+                        System.out.println("Please enter the new rating:");
+                    } else {
+                        System.err.println("I'm sorry but the entry entred was not valid.");
+                    }
+                } else {
+                    System.err.println("Sorry, game not found in database.");
+                }
             } else if (rootEntry.equals("3")) {
                 System.out.println("Here are the games in the database:");
-                System.out.println(Games.keySet());
+                System.out.println(Games.keySet()+ "\n");
             } else if (rootEntry.equals("4")) {
                 System.out.println("Please enter the name of the game.");
                 String infoInquiry = inputScanner.nextLine();
