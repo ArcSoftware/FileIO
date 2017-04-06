@@ -11,7 +11,7 @@ public class Game {
         this.year = year;
         this.rating = rating;
     }
-    public static String name;
+    public String name;
     String genre;
     String console;
     int year;
