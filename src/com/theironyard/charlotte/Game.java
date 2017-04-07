@@ -4,6 +4,9 @@ package com.theironyard.charlotte;
  * Created by Jake on 4/6/17.
  */
 public class Game {
+    Game() {
+    }
+
     Game(String name, String genre, String console, int year, int rating){
         this.name = name;
         this.genre = genre;
@@ -12,8 +15,8 @@ public class Game {
         this.rating = rating;
     }
     public String name;
-    String genre;
-    String console;
-    int year;
-    int rating;
+    public String genre;
+    public String console;
+    public int year;
+    public int rating;
 }
