@@ -13,11 +13,11 @@ import java.util.Scanner;
  * Created by Jake on 4/7/17.
  */
 public class ReadWriteClass {
-    public static void save() throws IOException {
+    public static void save(GameRepository repository) throws IOException {
         //Write to Json
         JsonSerializer serializer = new JsonSerializer();
         serializer.deep(true);
-        String json = serializer.serialize(Main.repository);
+        String json = serializer.serialize(repository);
         File f = new File("game.json");
         FileWriter fw = new FileWriter(f);
         fw.write(json);
@@ -37,7 +37,7 @@ public class ReadWriteClass {
             GameRepository repo = p.parse(contents, GameRepository.class);
             return repo;
         } else {
-            return null;
+            return new GameRepository();
         }
 
     }

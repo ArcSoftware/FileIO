@@ -15,4 +15,20 @@ public class GameRepository {
     public void setGames(HashMap<String, Game> games) {
         this.games = games;
     }
+
+    public void addGame(Game g) {
+        if (!games.containsKey(g.name)) {
+            games.put(g.name, g);
+        } else {
+            System.err.println("Game already exists");
+        }
+    }
+
+    public void updateGame(Game g) {
+        if (games.containsKey(g.name)) {
+            games.put(g.name, g);
+        } else {
+            System.err.println("Specified game not found.");
+        }
+    }
 }
